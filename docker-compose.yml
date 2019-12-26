@@ -2,8 +2,10 @@ version: "3"
 
 services:
   backend:
-    image: kangmin46/backend
+    image: yusi22131/backend
     container_name: backend-container
+    depends_on:
+      - deploy_db
     networks:
       - app-net
   shop:
@@ -38,6 +40,17 @@ services:
     volumes:
       - ./scripts/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/log:/var/log/nginx
+    networks:
+      - app-net
+  deploy_db:
+    image: library/mysql:5.7
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: caffeines
+      MYSQL_USER: ed
+      MYSQL_PASSWORD: password
     networks:
       - app-net
 
