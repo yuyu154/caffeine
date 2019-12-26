@@ -2,7 +2,7 @@ version: "3"
 
 services:
   backend:
-    image: kangmin46/backend
+    image: yusi22131/backend
     networks:
       - app-net
     depends_on:
